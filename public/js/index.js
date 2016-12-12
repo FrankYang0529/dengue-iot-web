@@ -4,7 +4,9 @@
   var now = (new Date()).getTime() / 1000;
   var gaugeChart,
       barChart,
-      bug24hrSum;
+      bug24hrSum,
+      realtimeData = [],
+      count = 0;
 
   initBarChart('#barChart');
   setInterval(updateChart, 1000);
@@ -13,7 +15,9 @@
     initGaugeChart(historyData);
 
     io('http://localhost:3000/iot')
-      .on('data', updateChart);
+      .on('data', function(event) {
+        realtimeData.push(event);
+      });
   });
 
   function initBarChart(id) {
@@ -29,7 +33,7 @@
     barChart = $(id).epoch({
       type: 'time.bar',
       data: barChartData,
-      range: [0, 5],
+      range: [0, 10],
       axes: ['bottom', 'left'],
       margins: { top: 50, right: 40, bottom: 60, left: 50 }
     });
@@ -41,7 +45,7 @@
     gaugeChart = $('#gaugeChart').epoch({
       type: 'time.gauge',
       value: bug24hrSum,
-      domain: [0, 100],
+      domain: [0, 500],
       format: function(v) { return (v).toFixed(0); }
     });
 
@@ -62,14 +66,18 @@
 
   function updateChart(event) {
     var timestamp = (new Date()).getTime() / 1000;
-    if (event) {
-      barChart.push([{ time: timestamp, y: 1 }]);
-      bug24hrSum++;
+    realtimeDataCount = realtimeData.length
+
+    if (count % 3 === 0 && realtimeDataCount > 0) {
+      barChart.push([{ time: timestamp, y: realtimeDataCount }]);
+      bug24hrSum += realtimeDataCount;
       gaugeChart.push(bug24hrSum);
+      realtimeData = [];
     }
     else {
       barChart.push([{ time: timestamp, y: 0 }]);
     }
+    count++;
   }
 
   function addTexts() {
