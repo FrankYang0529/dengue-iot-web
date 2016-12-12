@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  script(type='text/javascript').
+    var iotIO = io('http://localhost:3000/iot');
+    iotIO.on('data', function(event) {
+        console.log(event);
+    })
