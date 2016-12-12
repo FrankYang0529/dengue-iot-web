@@ -30,6 +30,7 @@ html, body {
 
 .bottom-panel {
   background-color: #1f1d1d;
+  border: 1px solid #292929;
   margin: auto;
   width: 90%;
   height: 42%;
