@@ -1,0 +1,122 @@
+html, body {
+	height: 100%;
+	width: 100%;
+	background-color: #141414;
+	margin: 0;
+  padding: 0;
+	overflow-x: hidden;
+	color: #D8D9DA;
+}
+
+#barChart {
+	margin: 10px auto;
+	height: 40%;
+	width: 90%;
+	display: block;
+	background-color: #1f1d1d;
+	border: 1px solid #292929;
+}
+
+#barChart .bar {
+  fill: #eab839;
+	stroke: #eab839;
+	stroke-opacity: 0.5;
+	fill-opacity: 0.845714;
+}
+
+#barChart .axis path {
+	stroke: #a07f2f;
+}
+
+.bottom-panel {
+	background-color: #1f1d1d;
+	margin: auto;
+	width: 90%;
+  height: 42%;
+}
+
+#gaugeChart {
+	position: relative;
+	top: -150px;
+	display: inline-block;
+  position: relative;
+	left: 24px;
+	text-align: center;
+}
+
+#gaugeChart h4 {
+  font-weight: normal;
+}
+
+#heatmap {
+	height: 240px;
+	margin-left: 5%;
+	display: inline-block;
+  width: 75%;
+}
+
+#heatmap text {
+	fill: #D8D9DA;
+}
+
+.epoch .gauge-labels .value {
+  font-size: 32px;
+}
+
+h1 {
+  margin: 8px;
+	font-size: 36px;
+	color: #D8D9DA;
+	text-align: center;
+}
+
+@media screen and (max-width: 1480px) {
+  #heatmap {
+    width: 72%;
+  }
+}
+@media screen and (max-width: 1186px) {
+  #heatmap {
+    width: 68%;
+  }
+  #gaugeChart {
+    width: 25%;
+    min-width: 100px;
+    top: -185px;
+  }
+  #heatmap text {
+    font-size: 16px;
+  }
+  .epoch .gauge-labels .value {
+    font-size: 26px;
+  }
+}
+@media screen and (max-width: 900px) {
+  #gaugeChart {
+    width: 150px;
+    top: -200px;
+  }
+  #heatmap text {
+    font-size: 14px;
+  }
+  .epoch .gauge-labels .value {
+    font-size: 24px;
+}
+@media screen and (max-width: 720px) {
+  #gaugeChart {
+    width: 100%;
+    top: 0;
+    margin-left: 0;
+  }
+  #heatmap {
+    width: 100%;
+    margin-left: 0;
+    height: initial;
+  }
+  #heatmap text{
+    font-size: 10px;
+  }
+  #bottom-panel {
+    height: initial;
+  }
+}
