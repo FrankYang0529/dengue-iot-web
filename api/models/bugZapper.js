@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 let CaptureSchema = new mongoose.Schema({
   lng: {type: Number, index: true},
   lat: {type: Number, index: true},
-  cnt: {type: Number}
+  cnt: {type: Number, default: 1}
 }, {
   timestamps: true
 });
