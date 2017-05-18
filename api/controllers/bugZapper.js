@@ -15,7 +15,8 @@ exports.addCapture = async (ctx, next) => {
 
   bugZapper.captures.push({
     lng: ctx.request.body.lng,
-    lat: ctx.request.body.lat
+    lat: ctx.request.body.lat,
+    cnt: ctx.request.body.cnt || 1
   });
   await bugZapper.save();
 
@@ -23,6 +24,7 @@ exports.addCapture = async (ctx, next) => {
     bugZapperId: bugZapper.bugZapperId,
     lng: ctx.request.body.lng,
     lat: ctx.request.body.lat,
+    cnt: ctx.request.body.cnt || 1,
     createdAt: bugZapper.createdAt
   };
   global.iot.broadcast('data', broadcastData);
